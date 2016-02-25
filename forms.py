@@ -50,6 +50,7 @@ class LikeForm(forms.Form):
             self.like = Like()
             self.like.quote = self.quote
             self.like.session = self.session
+            self.like.liked = True
         self.like.save()
 
 
