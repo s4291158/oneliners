@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div{% if 'success' in message.tags %} class="{{ message.tags }}"{% endif %}>
+                                    <p class="error-message">{{ message }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                {% if quote.context %}
+                    <div class="col-sm-12">
+                        <h3>{{ quote.context }}</h3>
+                    </div>
+                {% endif %}
+                <div class="col-sm-12 text-center">
+                    <h1>"{{ quote.text }}"</h1>
+                </div>
+                <div class="col-sm-12 text-center">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdotaoneliners.club&t=Dota%20Oneliners"
+                               title="Share on Facebook" target="_blank"><img src="{% static 'images/Facebook.png' %}"></a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/intent/tweet?source=https%3A%2F%2Fdotaoneliners.club&text=Dota%20Oneliners:%20https%3A%2F%2Fdotaoneliners.club"
+                               target="_blank" title="Tweet"><img src="{% static 'images/Twitter.png' %}"></a>
+                        </li>
+                        <li>
+                            <a href="http://www.reddit.com/submit?url=https%3A%2F%2Fdotaoneliners.club&title=Dota%20Oneliners"
+                               target="_blank" title="Submit to Reddit"><img src="{% static 'images/Reddit.png' %}"></a>
+                        </li>
+                        <li>
+                            <a id="like-btn" href="#" {% if likeform.like_field.value %}class="liked"
+                               {% else %}class="not-liked"{% endif %}>
+                                <span class="glyphicon glyphicon-thumbs-up">{{ quote.likes }}</span>
+                            </a>
+                        </li>
+                        {#                        <li>#}
+                        {#                            <a href="#"><span class="glyphicon glyphicon-arrow-down">3</span></a>#}
+                        {#                        </li>#}
+                        {#                        <li>#}
+                        {#                            <a href="#"><span class="glyphicon glyphicon-arrow-up">0</span></a>#}
+                        {#                        </li>#}
+                    </ul>
+                </div>
+
+                <div class="col-sm-12 text-center">
+                    <a href="{% url 'oneliners:add' %}">Add oneliner</a>
+                </div>
+                <div class="col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <a type="button" class="btn btn-danger btn-block" id="get-another-link" href="">Get another</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <form id="like-form" action="{% url 'oneliners:index' %}" method="POST">
+        {% csrf_token %}
+        {{ likeform.quote_id_field }}
+        {{ likeform.like_field }}
+    </form>
+{% endblock %}

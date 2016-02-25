@@ -1,0 +1,21 @@
+<html lang="en">
+
+<head>
+    <title>DotaOneliners</title>
+    {% include 'meta.html' %}
+    {% include 'css.html' %}
+    {% block css %}{% endblock %}
+</head>
+
+<body {% block body-class %}{% endblock %}>
+
+{% block nav %}{% endblock %}
+
+{% block content %}{% endblock %}
+
+{% include 'js.html' %}
+{% include 'tracking.html' %}
+
+</body>
+
+</html>

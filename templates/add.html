@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="add-section">
+        <div class="container">
+            <form method="post" action="{% url 'oneliners:add' %}">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3 col-sm-12">
+                        <div class="col-sm-12 form-group">
+                            <label for="{{ form.context_field.id_for_label }}">{{ form.context_field.label }}</label>
+                            {{ form.context_field }}
+                            {% for error in form.context_field.errors %}
+                                <p class="error-message">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="col-sm-12 form-group">
+                            <label for="{{ form.quote_field.id_for_label }}">{{ form.quote_field.label }}</label>
+                            {{ form.quote_field }}
+                            {% for error in form.quote_field.errors %}
+                                <p class="error-message">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="col-sm-12 form-group">
+                            <button class="btn btn-success btn-block" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}

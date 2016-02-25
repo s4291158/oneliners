@@ -1,0 +1,36 @@
+@media (max-width: 766px) {
+    .list-inline li {
+        padding: 0;
+    }
+}
+
+@media (min-width: 767px) {
+    section {
+        margin-top: 90px;
+    }
+}
+
+.error-message {
+    color: red;
+}
+
+section .container .row > div {
+    margin-top: 20px;
+}
+
+.list-inline li a {
+    font-size: 16px;
+}
+
+.glyphicon {
+    height: 32px;
+    width: 32px;
+}
+
+.liked {
+    color: orange;
+}
+
+.not-liked {
+    color: black;
+}
