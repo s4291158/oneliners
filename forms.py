@@ -93,7 +93,7 @@ class QuoteForm(forms.Form):
         if len(existing_quotes) > 0:
             raise forms.ValidationError('Oneliner already exists')
 
-        session = self.get_session()
+        session = get_session(self.sessionkey)
         session_quotes = Quote.objects.filter(session=session)
         if len(session_quotes) > 20:
             raise forms.ValidationError('Slow down turbo')
