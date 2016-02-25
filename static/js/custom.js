@@ -11,11 +11,13 @@ $('#like-btn').click(function (e) {
 
     var form = $('#like-form');
     $.post(form.attr('action'), form.serialize(), function (data) {
-        console.log(data.liked);
+        var likebtn = $('#like-btn');
         if (data.liked) {
-            $('#like-btn').css('color', 'orange');
+            likebtn.css('color', 'orange');
+            likebtn.removeClass().addClass('liked');
         } else {
-            $('#like-btn').css('color', 'black');
+            likebtn.css('color', 'black');
+            likebtn.removeClass().addClass('not-liked');
         }
         $('.glyphicon-thumbs-up').text(data.likes);
     });
