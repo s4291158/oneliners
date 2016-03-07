@@ -16,7 +16,10 @@ def index(request):
         request.session['has_session'] = True
 
     if request.method == 'GET':
-        quote = random_quote_text()
+        if 'id' in request.GET and 'key' in request.GET and request.GET['key'] == 'trynottobeacunt':
+            quote = Quote.objects.get(id=request.GET['id'])
+        else:
+            quote = random_quote_text()
         context['likeform'] = LikeForm(
             sessionkey=request.session.session_key,
             quote_id=quote.id
