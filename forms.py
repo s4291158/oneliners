@@ -102,7 +102,10 @@ class QuoteForm(forms.Form):
 
     def save(self):
         session = get_session(self.sessionkey)
-        session.key = self.sessionkey
+        if not session:
+            session = Session()
+        else:
+            session.key = self.sessionkey
         session.save()
 
         quote = Quote()
